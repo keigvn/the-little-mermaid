@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Characters</title>
+    <link rel="stylesheet" href="characters-style.css">
+    <link rel="icon" href="resources/the-little-mermaid.ico" type="image/icon type">
+</head>
+<body>
+    <header>
+        <div class="main">
+            <nav>
+                <a href="index.html"><img src="resources/the little mermaid.png" class="logo"></a>
+                <ul>
+                    <li><a href="characters.html">CHARACTERS</a></li>
+                    <li><a href="introduction.html">INTRODUCTION</a></li>
+                    <li><a href="climax.html">CLIMAX</a></li>
+                    <li><a href="ending.html">ENDING</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carousel">
+        <div class="list">
+            <div class="item">
+                <img src="resources/characters/1.jpg">
+                <div class="content">
+                    <div class="heading">The Little Mermaid</div>
+                    <div class="name">ARIEL</div>
+                    <div class="des">
+                        A young mermaid who dreams of living on land and marrying a human prince. She is curious, brave, and selfless, willing to make sacrifices for the sake of love.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/2.png">
+                <div class="content">
+                    <div class="heading">The Prince</div>
+                    <div class="name">PRINCE ERIC</div>
+                    <div class="des">
+                        A human prince whom the Little Mermaid falls in love with after rescuing him from a shipwreck. He represents the object of the Little Mermaid's affection and her desire for a human soul.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/3.jpg">
+                <div class="content">
+                    <div class="heading">The Sea King</div>
+                    <div class="name">KING TRITON</div>
+                    <div class="des">
+                        The father of the Little Mermaid and ruler of the underwater kingdom.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/4.jpg">
+                <div class="content">
+                    <div class="heading">The Crab</div>
+                   
+                    <div class="name">SEBASTIAN</div>
+                    <div class="des">
+                        A Jamaican-accented crab who serves as King Triton's advisor and court composer. 
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/5.jpg">
+                <div class="content">
+                    <div class="heading">The Witch</div>
+                   
+                    <div class="name">URSULA</div>
+                    <div class="des">
+                        A sinister sea witch who offers the Little Mermaid a potion to transform her tail into human legs in exchange for her voice. She embodies temptation and serves as the primary antagonist in the story.
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    
+        <div class="thumbnail">
+            <div class="item">
+                <img src="resources/characters/1.jpg">
+                <div class="content">
+                    <div class="title">
+                        Ariel
+                    </div>
+                    <div class="description">
+                        Mermaid
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/2.png">
+                <div class="content">
+                    <div class="title">
+                        Eric
+                    </div>
+                    <div class="description">
+                        Prince
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/3.jpg">
+                <div class="content">
+                    <div class="title">
+                        Triton
+                    </div>
+                    <div class="description">
+                        Sea King
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/4.jpg">
+                <div class="content">
+                    <div class="title">
+                        Sebastian
+                    </div>
+                    <div class="description">
+                        Crab
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="resources/characters/5.jpg">
+                <div class="content">
+                    <div class="title">
+                        Ursula
+                    </div>
+                    <div class="description">
+                        Witch
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <div class="time"></div>
+    </div>
+
+    <script> 
+        let nextDom = document.getElementById('next');
+        let prevDom = document.getElementById('prev');
+
+        let carouselDom = document.querySelector('.carousel');
+        let SliderDom = carouselDom.querySelector('.carousel .list');
+        let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
+        let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
+        let timeDom = document.querySelector('.carousel .time');
+
+        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+        let timeRunning = 3000;
+        let timeAutoNext = 7000;
+
+        nextDom.onclick = function(){
+            showSlider('next');    
+        }
+
+        prevDom.onclick = function(){
+            showSlider('prev');    
+        }
+        let runTimeOut;
+        let runNextAuto = setTimeout(() => {
+            next.click();
+        }, timeAutoNext)
+        function showSlider(type){
+            let  SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
+            let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
+            
+            if(type === 'next'){
+                SliderDom.appendChild(SliderItemsDom[0]);
+                thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+                carouselDom.classList.add('next');
+            }else{
+                SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
+                thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
+                carouselDom.classList.add('prev');
+            }
+            clearTimeout(runTimeOut);
+            runTimeOut = setTimeout(() => {
+                carouselDom.classList.remove('next');
+                carouselDom.classList.remove('prev');
+            }, timeRunning);
+
+            clearTimeout(runNextAuto);
+            runNextAuto = setTimeout(() => {
+                next.click();
+            }, timeAutoNext)
+        }
+    </script>
+</body>
+</html>
